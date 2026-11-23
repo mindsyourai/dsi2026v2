@@ -317,7 +317,23 @@ results (card 22). If running long, cut the LM check to the answer only
   independent re-check by another agent before presenting is still open
   and recommended — the parent agent can arrange it.
 
-## Push + live check (to be filled after the push)
+## Push + live check (2026-11-23)
 
-- Repo: `mindsyourai/dsi2026v2` (new; branch main; Pages serving root).
-- Live: https://mindsyourai.github.io/dsi2026v2/
+- Repo did not exist (check → 404). Created via API POST /user/repos
+  (mindsyourai is a User account, not an org): `mindsyourai/dsi2026v2`,
+  public, default branch main, no auto-init (repo id 1469143949).
+- Helper's `init` NOT used — it writes a hardcoded turkic-fest README.
+  First commit via Contents API PUT of index.html itself (the Git Data API
+  push refuses an empty repo with 409, as the connector doc warns):
+  commit `0d8b01a1af5856208efa6b60dd04d39c365c1de2`, index.html at root.
+  NOTES.md committed separately: `cb9dd1e1a447d1f53540286659780807729f7ba3`.
+- Pages enabled: POST /pages → 201, source main / root,
+  https://mindsyourai.github.io/dsi2026v2/.
+- Live check (curl, cache-busted, ~45 s after Pages enable): HTTP 200,
+  65,478 bytes, **byte-identical to local** (cmp clean), "Card 1 of 27"
+  present, 179,623 present, tables present. Independent browser.open fetch
+  confirms the live text: all 27 cards in order, including the corrected
+  disagreement table (Macro-F1 "—" on all rows) and the decision-support
+  table. No stale-copy lag on the first check.
+- NOTES.md push-section update committed after the live check (this file's
+  own update is pushed separately, so the repo copy stays current).
